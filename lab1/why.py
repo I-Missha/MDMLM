@@ -13,6 +13,10 @@ def generate_sample(f, x_range, N):
 def polynomial_regression(x, y, degree):
     A = np.vander(x, degree + 1, increasing=True)
     coeffs = solve(A.T @ A, A.T @ y)
+    i = 0
+    for j in coeffs:
+        i += 1
+    print(coeffs, i)
     return coeffs
 
 
@@ -22,10 +26,10 @@ def polynomial_value(x, coeffs):
 
 orig_function = lambda x: x * np.sin(2 * np.pi * x)
 
-x_train, y_train = generate_sample(orig_function, (-1, 1), 40)
+x_train, y_train = generate_sample(orig_function, (-1, 1), 15)
 x_test = np.linspace(-1, 1, 100)
 
-degrees = [9]
+degrees = [30]
 
 plt.figure(figsize=(12, 8))
 plt.ylim(-2, 2)
